@@ -30,7 +30,7 @@ if os.path.sep in args.app:
         sys.path.append("{}/{}".format(os.getcwd(), app_split[0]))
 
 def run():
-    app = pkg_resources.EntryPoint.parse("x=%s" % args.app).load(False)
+    app = pkg_resources.EntryPoint.parse("x=%s" % args.app).load(False).app
 
     # load the base template
     template = None
