@@ -109,8 +109,8 @@ def swagger(app, process_doc=_sanitize, template=None):
     output = {
         "swagger": "2.0",
         "info": {
-            "version": "0.0.0",
-            "title": "Cool product name",
+            "version": "",
+            "title": "",
         }
     }
     paths = defaultdict(dict)
