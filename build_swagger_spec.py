@@ -4,6 +4,7 @@ import argparse
 import json
 import pkg_resources
 from flask_swagger import swagger
+from swagger_json_to_markdown import swagger_json_to_markdown
 
 parser = argparse.ArgumentParser()
 parser.add_argument('app', help='the flask app to swaggerify')
@@ -13,6 +14,7 @@ parser.add_argument('--definitions', default=None, help='json definitions file')
 parser.add_argument('--host', default=None)
 parser.add_argument('--base-path', default=None)
 parser.add_argument('--version', default=None, help='Specify a spec version')
+parser.add_argument('--as-markdown', default=False, help='Output as markdown')
 
 args = parser.parse_args()
 
@@ -54,12 +56,20 @@ def run():
         spec['basePath'] = args.base_path
     if args.version is not None:
         spec['info']['version'] = args.version
-    if args.out_dir is None:
-        print(json.dumps(spec, indent=4))
+    if args.as_markdown:
+        if args.out_dir is None:
+            print swagger_json_to_markdown(spec)
+        else:
+            with open("%s/swagger.markdown" % args.out_dir, 'w') as f:
+                f.write(swagger_json_to_markdown(spec))
+                f.close
     else:
-        with open("%s/swagger.json" % args.out_dir, 'w') as f:
-            f.write(json.dumps(spec, indent=4))
-            f.close()
+        if args.out_dir is None:
+            print(json.dumps(spec, indent=4))
+        else:
+            with open("%s/swagger.json" % args.out_dir, 'w') as f:
+                f.write(json.dumps(spec, indent=4))
+                f.close()
 
 if __name__ == '__main__':
     run()

@@ -8,11 +8,11 @@ with open('README') as file:
 
 setup(name='flask-swagger',
       version='0.2.12',
-      url='https://github.com/gangverk/flask-swagger',
+      url='https://github.com/jasonmlkang/flask-swagger',
       description='Extract swagger specs from your flask project',
       author='Atli Thorbjornsson',
       license='MIT',
-      py_modules=['flask_swagger', 'build_swagger_spec'],
+      py_modules=['flask_swagger', 'build_swagger_spec', 'swagger_json_to_markdown'],
       long_description=long_description,
       install_requires=['Flask>=0.10', 'PyYAML>=3.0'],
       classifiers=[
