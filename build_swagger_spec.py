@@ -61,4 +61,5 @@ def run():
             f.write(json.dumps(spec, indent=4))
             f.close()
 
-run()
+if __name__ == '__main__':
+    run()
