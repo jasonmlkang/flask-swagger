@@ -60,7 +60,7 @@ def run():
         if args.out_dir is None:
             print swagger_json_to_markdown(spec)
         else:
-            with open("%s/swagger.markdown" % args.out_dir, 'w') as f:
+            with open("%s/swagger.md" % args.out_dir, 'w') as f:
                 f.write(swagger_json_to_markdown(spec))
                 f.close
     else:
