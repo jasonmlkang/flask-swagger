@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('app', help='the flask app to swaggerify')
 parser.add_argument('--template', help='template spec to start with, before any other options or processing')
 parser.add_argument('--out-dir', default=None, help='the directory to output to')
+parser.add_argument('--out-file-name', default=None, help="Name of file to output")
 parser.add_argument('--definitions', default=None, help='json definitions file')
 parser.add_argument('--host', default=None)
 parser.add_argument('--base-path', default=None)
@@ -60,14 +61,16 @@ def run():
         if args.out_dir is None:
             print swagger_json_to_markdown(spec)
         else:
-            with open("%s/swagger.md" % args.out_dir, 'w') as f:
+            out_file_name = args.out_file_name if args.out_file_name else "swagger.md"
+            with open("{}/{}".format(args.out_dir, out_file_name), 'w') as f:
                 f.write(swagger_json_to_markdown(spec))
                 f.close
     else:
         if args.out_dir is None:
             print(json.dumps(spec, indent=4))
         else:
-            with open("%s/swagger.json" % args.out_dir, 'w') as f:
+            out_file_name = args.out_file_name if args.out_file_name else "swagger.json"
+            with open("{}/{}".format(args.out_dir, out_file_name), 'w') as f:
                 f.write(json.dumps(spec, indent=4))
                 f.close()
 
