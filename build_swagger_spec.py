@@ -14,7 +14,7 @@ parser.add_argument('--definitions', default=None, help='json definitions file')
 parser.add_argument('--host', default=None)
 parser.add_argument('--base-path', default=None)
 parser.add_argument('--version', default=None, help='Specify a spec version')
-parser.add_argument('--as-markdown', default=False, help='Output as markdown')
+parser.add_argument('--as-markdown', action="store_true", default=False, help='Output as markdown')
 
 args = parser.parse_args()
 
